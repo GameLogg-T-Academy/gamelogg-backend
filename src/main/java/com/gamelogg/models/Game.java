@@ -26,14 +26,6 @@ public class Game {
     private String synopsis;
     private String status;
     private LocalDate releaseDate;
-    @ManyToOne
-    @JoinColumn(name = "developer_id")
-    private Developer developer;
-
-    @ManyToOne
-    @JoinColumn(name = "publisher_id")
-    private Publisher publisher;
-
-
-
+    private String developer;
+    private String publisher;
 }
