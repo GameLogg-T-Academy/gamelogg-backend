@@ -25,16 +25,13 @@ public class GameController {
             @RequestParam(value = "title", required = false) String title,
             @RequestParam(value = "status", required = false) String status,
             @RequestParam(value = "favorite", required = false) Boolean favorite,
-            @RequestParam(value = "durationMin", required = false) Integer durationMin,
-            @RequestParam(value = "durationMax", required = false) Integer durationMax,
             @RequestParam(value = "developer", required = false) String developer,
             @RequestParam(value = "publisher", required = false) String publisher,
-            @RequestParam(value = "releasedAfter", required = false) LocalDate releasedAfter,
-            @RequestParam(value = "releasedBefore", required = false) LocalDate releasedBefore
+            @RequestParam(value = "releaseYear", required = false) Integer releaseYear
     ) {
 
         Page<Game> games = gameService.findGames(pageNumber, pageSize, title, status,
-                favorite, durationMin, durationMax, developer, publisher, releasedAfter, releasedBefore);
+                favorite, developer, publisher, releaseYear);
 
         return new ResponseEntity<>(games, HttpStatus.OK);
     }

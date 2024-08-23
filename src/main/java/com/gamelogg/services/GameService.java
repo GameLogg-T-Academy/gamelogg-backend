@@ -10,8 +10,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-
 @Service
 public class GameService {
 
@@ -19,15 +17,14 @@ public class GameService {
     private GameRepository gameRepository;
 
     public Page<Game> findGames(Integer pageNumber, Integer pageSize, String title, String status, Boolean favorite,
-            Integer durationMin, Integer durationMax, String developer, String publisher,
-            LocalDate releasedAfter,LocalDate releasedBefore) {
+            String developer, String publisher, Integer releaseYear) {
         Specification<Game> spec = Specification
                 .where(GameSpecification.hasTitle(title))
                 .and(GameSpecification.hasStatus(status))
                 .and(GameSpecification.isFavorite(favorite))
                 .and(GameSpecification.hasDeveloper(developer))
                 .and(GameSpecification.hasPublisher(publisher))
-                .and(GameSpecification.hasReleaseDateRange(releasedAfter, releasedBefore));
+                .and(GameSpecification.hasReleaseYear(releaseYear));
 
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
 
