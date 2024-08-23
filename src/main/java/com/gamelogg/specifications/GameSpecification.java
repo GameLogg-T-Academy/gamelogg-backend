@@ -23,6 +23,11 @@ public class GameSpecification {
                         .lower(root.get("status")), "%" + status.toLowerCase() + "%"));
     }
 
+    public static Specification<Game> hasMaxPrice(Double maxPrice) {
+        return ((root, query, criteriaBuilder) ->
+                maxPrice == null? null : criteriaBuilder.lessThanOrEqualTo(root.get("price"), maxPrice));
+    }
+
     public static Specification<Game> hasReleaseYear(Integer releaseYear) {
         return ((root, query, criteriaBuilder) ->
             releaseYear == null ? null : criteriaBuilder.equal(

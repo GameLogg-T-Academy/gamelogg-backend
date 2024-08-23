@@ -24,6 +24,7 @@ public class GameController {
             @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
             @RequestParam(value = "title", required = false) String title,
             @RequestParam(value = "status", required = false) String status,
+            @RequestParam(value = "maxPrice", required = false) Double maxPrice,
             @RequestParam(value = "favorite", required = false) Boolean favorite,
             @RequestParam(value = "developer", required = false) String developer,
             @RequestParam(value = "publisher", required = false) String publisher,
@@ -31,7 +32,7 @@ public class GameController {
     ) {
 
         Page<Game> games = gameService.findGames(pageNumber, pageSize, title, status,
-                favorite, developer, publisher, releaseYear);
+                maxPrice, favorite, developer, publisher, releaseYear);
 
         return new ResponseEntity<>(games, HttpStatus.OK);
     }

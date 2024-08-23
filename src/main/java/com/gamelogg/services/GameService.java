@@ -16,11 +16,12 @@ public class GameService {
     @Autowired
     private GameRepository gameRepository;
 
-    public Page<Game> findGames(Integer pageNumber, Integer pageSize, String title, String status, Boolean favorite,
-            String developer, String publisher, Integer releaseYear) {
+    public Page<Game> findGames(Integer pageNumber, Integer pageSize, String title, String status, Double maxPrice,
+            Boolean favorite, String developer, String publisher, Integer releaseYear) {
         Specification<Game> spec = Specification
                 .where(GameSpecification.hasTitle(title))
                 .and(GameSpecification.hasStatus(status))
+                .and(GameSpecification.hasMaxPrice(maxPrice))
                 .and(GameSpecification.isFavorite(favorite))
                 .and(GameSpecification.hasDeveloper(developer))
                 .and(GameSpecification.hasPublisher(publisher))
