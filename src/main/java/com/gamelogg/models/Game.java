@@ -21,11 +21,13 @@ public class Game {
     private Long id;
     private String title;
     private String url;
-    private Integer duration;
-    private Boolean favorite;
-    private String synopsis;
-    private String status;
+    private String description;
+    private Double price;
+    private Integer rating;
+    private String genre;
     private LocalDate releaseDate;
+    private Boolean favorite;
+    private String status;
     private String developer;
     private String publisher;
 }
