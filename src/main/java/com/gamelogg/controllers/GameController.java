@@ -29,11 +29,12 @@ public class GameController {
             @RequestParam(value = "favorite", required = false) Boolean favorite,
             @RequestParam(value = "developer", required = false) String developer,
             @RequestParam(value = "publisher", required = false) String publisher,
-            @RequestParam(value = "releaseYear", required = false) Integer releaseYear
+            @RequestParam(value = "releaseYear", required = false) Integer releaseYear,
+            @RequestParam(value = "genre", required = false) String genre
     ) {
 
         Page<Game> games = gameService.findGames(pageNumber, pageSize, title, status,
-                maxPrice, favorite, developer, publisher, releaseYear);
+                maxPrice, favorite, developer, publisher, releaseYear, genre);
 
         return new ResponseEntity<>(games, HttpStatus.OK);
     }

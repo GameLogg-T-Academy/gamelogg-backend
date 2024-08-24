@@ -17,7 +17,7 @@ public class GameService {
     private GameRepository gameRepository;
 
     public Page<Game> findGames(Integer pageNumber, Integer pageSize, String title, String status, Double maxPrice,
-            Boolean favorite, String developer, String publisher, Integer releaseYear) {
+            Boolean favorite, String developer, String publisher, Integer releaseYear, String genre) {
         Specification<Game> spec = Specification
                 .where(GameSpecification.hasTitle(title))
                 .and(GameSpecification.hasStatus(status))
@@ -25,7 +25,8 @@ public class GameService {
                 .and(GameSpecification.isFavorite(favorite))
                 .and(GameSpecification.hasDeveloper(developer))
                 .and(GameSpecification.hasPublisher(publisher))
-                .and(GameSpecification.hasReleaseYear(releaseYear));
+                .and(GameSpecification.hasReleaseYear(releaseYear))
+                .and(GameSpecification.hasGenre(genre));
 
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
 
