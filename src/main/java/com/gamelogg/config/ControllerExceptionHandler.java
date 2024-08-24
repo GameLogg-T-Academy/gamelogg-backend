@@ -1,7 +1,6 @@
 package com.gamelogg.config;
 
 import com.gamelogg.dtos.ExceptionDTO;
-import jakarta.persistence.Entity;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
@@ -9,10 +8,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
-public class ControllerExceptionHander {
+public class ControllerExceptionHandler {
 
     @ExceptionHandler(DataIntegrityViolationException.class)
-    public ResponseEntity threatDuplicateEntry(DataIntegrityViolationException exception) {
+    public ResponseEntity<ExceptionDTO> threatDuplicateEntry(DataIntegrityViolationException exception) {
         ExceptionDTO exceptionDTO = new ExceptionDTO("Game already registered", "400");
         return ResponseEntity.badRequest().body(exceptionDTO);
     }
