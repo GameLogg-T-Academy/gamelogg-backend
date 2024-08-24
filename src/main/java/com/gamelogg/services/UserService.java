@@ -18,20 +18,30 @@ public class UserService {
     @Autowired
     private GameRepository gameRepository;
 
-    public void addGameToUser(Long userId, Long gameId) {
+    public User getUserById(Long userId) {
+        return userRepository.findById(userId).orElseThrow(RuntimeException::new);
+    }
+
+    public User addGameToUser(Long userId, Long gameId) {
         User user = userRepository.findById(userId).orElseThrow(RuntimeException::new);
         Game game = gameRepository.findById(gameId).orElseThrow(RuntimeException::new);
 
-        user.getGames().add(game);
-        userRepository.save(user);
+        if (!user.getGames().contains(game)) {
+            user.getGames().add(game);
+            userRepository.save(user);
+        }
+
+        return user;
     }
 
-    public void removeGameFromUser(Long userId, Long gameId) {
+    public User removeGameFromUser(Long userId, Long gameId) {
         User user = userRepository.findById(userId).orElseThrow(RuntimeException::new);
         Game game = gameRepository.findById(gameId).orElseThrow(RuntimeException::new);
 
         user.getGames().remove(game);
         userRepository.save(user);
+
+        return user;
     }
 
     public List<Game> getGamesByUserId(Long userId) {
