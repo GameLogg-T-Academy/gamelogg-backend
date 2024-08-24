@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/games")
-@Tag(name = "GameLogg API")
+@Tag(name = "Games")
 public class GameController {
 
     @Autowired
