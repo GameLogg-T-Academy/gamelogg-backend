@@ -47,9 +47,6 @@ public class Game {
     @Schema(example = "2018-01-26")
     private LocalDate releaseDate;
 
-    @Schema(example = "true")
-    private Boolean favorite;
-
     @Schema(example = "Playing")
     private String status;
 

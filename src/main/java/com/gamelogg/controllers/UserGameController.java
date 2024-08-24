@@ -34,7 +34,7 @@ public class UserGameController {
 
     @Operation(summary = "Get list of games by user")
     @GetMapping("/games")
-    public ResponseEntity<List<UserGame>> getGamesByUserId(
+    public ResponseEntity<List<Game>> getGamesByUserId(
             @PathVariable Long userId,
             @RequestParam(required = false) Boolean isFavorite) throws Exception {
         return ResponseEntity.ok(userGameService.getUserGames(userId, isFavorite));

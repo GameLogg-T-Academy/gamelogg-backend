@@ -17,7 +17,7 @@ public class UserGameService {
     @Autowired
     private UserGameRepository userGameRepository;
 
-    public List<UserGame> getUserGames(Long userId, Boolean isFavorite) {
+    public List<Game> getUserGames(Long userId, Boolean isFavorite) {
         Specification<UserGame> spec = Specification
                 .where(((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("user").get("id"), userId)));
 
@@ -25,7 +25,7 @@ public class UserGameService {
             spec = spec.and((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("isFavorite"), isFavorite));
         }
 
-        return userGameRepository.findAll(spec);
+        return userGameRepository.findAll(spec).stream().map(userGame -> userGame.getGame()).toList();
     }
 
     public UserGame saveUserGame(User user, Game game, boolean isFavorite) {
