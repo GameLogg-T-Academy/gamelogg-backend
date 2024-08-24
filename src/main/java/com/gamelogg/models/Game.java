@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -59,6 +60,6 @@ public class Game {
     private String publisher;
 
     @JsonBackReference
-    @ManyToMany(mappedBy = "games")
-    private List<User> users;
+    @OneToMany(mappedBy = "game")
+    private List<UserGame> userGames = new ArrayList<>();
 }
