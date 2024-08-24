@@ -34,10 +34,17 @@ public class UserGameController {
 
     @Operation(summary = "Get list of games by user")
     @GetMapping("/games")
-    public ResponseEntity<List<Game>> getGamesByUserId(
+    public ResponseEntity<List<UserGame>> getGamesByUserId(
             @PathVariable Long userId,
+            @RequestParam(required = false) String status,
             @RequestParam(required = false) Boolean isFavorite) throws Exception {
-        return ResponseEntity.ok(userGameService.getUserGames(userId, isFavorite));
+        return ResponseEntity.ok(userGameService.findUserGames(userId, status, isFavorite));
+    }
+
+    @Operation(summary = "Get user-game relation details")
+    @GetMapping("/games/{gameId}")
+    public ResponseEntity<UserGame> getUserGameDetails(@PathVariable Long userId, @PathVariable Long gameId) throws Exception {
+        return ResponseEntity.ok(userGameService.findUserGameByUserIdAndGameId(userId, gameId));
     }
 
     @Operation(summary = "Associate game with user")
@@ -47,7 +54,7 @@ public class UserGameController {
             @RequestBody UserGameDTO userGameDTO) throws Exception {
         User user = userService.findUser(userId);
         Game game = gameService.findGame(gameId);
-        return ResponseEntity.ok(userGameService.saveUserGame(user, game, userGameDTO.isFavorite()));
+        return ResponseEntity.ok(userGameService.saveUserGame(user, game, userGameDTO));
     }
 
     @Operation(summary = "Update favorite status in user-game relation")
@@ -57,7 +64,7 @@ public class UserGameController {
             @RequestBody UserGameDTO userGameDTO) throws Exception {
         User user = userService.findUser(userId);
         Game game = gameService.findGame(gameId);
-        return ResponseEntity.ok(userGameService.saveUserGame(user, game, userGameDTO.isFavorite()));
+        return ResponseEntity.ok(userGameService.saveUserGame(user, game, userGameDTO));
     }
 
     @Operation(summary = "Remove association between game and user")

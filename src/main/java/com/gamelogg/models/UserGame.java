@@ -1,5 +1,6 @@
 package com.gamelogg.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,6 +16,7 @@ import lombok.Setter;
 public class UserGame {
 
     @EmbeddedId
+    @JsonIgnore
     private UserGameId id;
 
     @ManyToOne
@@ -28,4 +30,6 @@ public class UserGame {
     private Game game;
 
     private Boolean isFavorite = false;
+
+    private String status = "Not started";
 }

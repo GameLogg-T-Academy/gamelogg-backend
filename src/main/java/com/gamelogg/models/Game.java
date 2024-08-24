@@ -1,6 +1,6 @@
 package com.gamelogg.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -47,16 +47,13 @@ public class Game {
     @Schema(example = "2018-01-26")
     private LocalDate releaseDate;
 
-    @Schema(example = "Playing")
-    private String status;
-
     @Schema(example = "Capcom")
     private String developer;
 
     @Schema(example = "Capcom")
     private String publisher;
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "game")
     private List<UserGame> userGames = new ArrayList<>();
 }

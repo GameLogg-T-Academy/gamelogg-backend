@@ -1,6 +1,6 @@
 package com.gamelogg.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -30,7 +30,7 @@ public class User {
     @Schema(example = "user@mail.com")
     private String email;
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<UserGame> userGames = new ArrayList<>();
 }

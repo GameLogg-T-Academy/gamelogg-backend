@@ -1,3 +1,3 @@
 package com.gamelogg.dtos;
 
-public record UserGameDTO(Boolean isFavorite) {}
+public record UserGameDTO(String status, Boolean isFavorite) {}
