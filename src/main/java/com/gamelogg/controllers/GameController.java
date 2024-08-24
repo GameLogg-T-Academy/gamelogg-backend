@@ -37,7 +37,7 @@ public class GameController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Game> getGame(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<Game> getGame(@PathVariable(value = "id") Long id) throws Exception {
         Game game = gameService.findGame(id);
         return new ResponseEntity<>(game, HttpStatus.OK);
     }
@@ -56,7 +56,7 @@ public class GameController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteGame(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteGame(@PathVariable Long id) throws Exception {
         gameService.deleteGame(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

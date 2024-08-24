@@ -32,16 +32,16 @@ public class GameService {
         return gameRepository.findAll(spec, pageable);
     }
 
-    public Game findGame(Long id) {
-        return gameRepository.findById(id).orElseThrow(RuntimeException::new);
+    public Game findGame(Long id) throws Exception {
+        return gameRepository.findById(id).orElseThrow(() -> new Exception("Game not found"));
     }
 
     public Game saveGame(Game game) {
         return gameRepository.save(game);
     }
 
-    public void deleteGame(Long id) {
-        Game game = gameRepository.findById(id).orElseThrow(RuntimeException::new);
+    public void deleteGame(Long id) throws Exception {
+        Game game = gameRepository.findById(id).orElseThrow(() -> new Exception("Game not found"));
         gameRepository.delete(game);
     }
 }
