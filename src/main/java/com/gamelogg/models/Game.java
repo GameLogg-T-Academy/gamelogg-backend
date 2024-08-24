@@ -1,5 +1,6 @@
 package com.gamelogg.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -56,6 +57,7 @@ public class Game {
     @Schema(example = "Capcom")
     private String publisher;
 
+    @JsonBackReference
     @ManyToMany(mappedBy = "games")
     private List<User> users;
 }
