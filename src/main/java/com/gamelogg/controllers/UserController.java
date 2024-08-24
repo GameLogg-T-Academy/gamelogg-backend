@@ -22,7 +22,7 @@ public class UserController {
 
     @Operation(summary = "Get user data")
     @GetMapping("/{userId}")
-    public ResponseEntity<User> getUserById(@PathVariable Long userId) {
+    public ResponseEntity<User> getUserById(@PathVariable Long userId) throws Exception {
         return ResponseEntity.ok(userService.getUserById(userId));
     }
 
@@ -34,13 +34,13 @@ public class UserController {
 
     @Operation(summary = "Associate game with user")
     @PostMapping("/{userId}/games")
-    public ResponseEntity<User> addGameToUser(@PathVariable Long userId, @RequestBody UserGameRequest userGameRequest) {
+    public ResponseEntity<User> addGameToUser(@PathVariable Long userId, @RequestBody UserGameRequest userGameRequest) throws Exception {
         return ResponseEntity.ok(userService.addGameToUser(userId, userGameRequest.gameId()));
     }
 
     @Operation(summary = "Remove association between game and user")
     @DeleteMapping("/{userId}/games/{gameId}")
-    public ResponseEntity<User> deleteGameFromUser(@PathVariable Long userId, @PathVariable Long gameId) {
+    public ResponseEntity<User> deleteGameFromUser(@PathVariable Long userId, @PathVariable Long gameId) throws Exception {
         return ResponseEntity.ok(userService.removeGameFromUser(userId, gameId));
     }
 }

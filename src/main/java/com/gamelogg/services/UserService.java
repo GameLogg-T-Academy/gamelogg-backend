@@ -18,13 +18,13 @@ public class UserService {
     @Autowired
     private GameRepository gameRepository;
 
-    public User getUserById(Long userId) {
-        return userRepository.findById(userId).orElseThrow(RuntimeException::new);
+    public User getUserById(Long userId) throws Exception {
+        return userRepository.findById(userId).orElseThrow(() -> new Exception("User not found"));
     }
 
-    public User addGameToUser(Long userId, Long gameId) {
-        User user = userRepository.findById(userId).orElseThrow(RuntimeException::new);
-        Game game = gameRepository.findById(gameId).orElseThrow(RuntimeException::new);
+    public User addGameToUser(Long userId, Long gameId) throws Exception {
+        User user = userRepository.findById(userId).orElseThrow(() -> new Exception("User not found"));
+        Game game = gameRepository.findById(gameId).orElseThrow(() -> new Exception("Game not found"));
 
         if (!user.getGames().contains(game)) {
             user.getGames().add(game);
@@ -34,9 +34,9 @@ public class UserService {
         return user;
     }
 
-    public User removeGameFromUser(Long userId, Long gameId) {
-        User user = userRepository.findById(userId).orElseThrow(RuntimeException::new);
-        Game game = gameRepository.findById(gameId).orElseThrow(RuntimeException::new);
+    public User removeGameFromUser(Long userId, Long gameId) throws Exception {
+        User user = userRepository.findById(userId).orElseThrow(() -> new Exception("User not found"));
+        Game game = gameRepository.findById(gameId).orElseThrow(() -> new Exception("Game not found"));
 
         user.getGames().remove(game);
         userRepository.save(user);
