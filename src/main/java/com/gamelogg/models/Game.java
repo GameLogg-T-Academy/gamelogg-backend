@@ -24,6 +24,7 @@ public class Game {
     @Schema(example = "1")
     private Long id;
 
+    @Column(unique = true)
     @Schema(example = "Monster Hunter World")
     private String title;
 
