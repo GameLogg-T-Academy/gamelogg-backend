@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "game")
@@ -54,4 +55,7 @@ public class Game {
 
     @Schema(example = "Capcom")
     private String publisher;
+
+    @ManyToMany(mappedBy = "games")
+    private List<User> users;
 }
