@@ -1,5 +1,13 @@
 # GameLogg API
 
+## group
+<ol>
+    <li>Emilly Santiago</li>
+    <li>Paulo Henrique</li>
+    <li>Gabriel Gonçalves</li>
+    <li>Igor Monteiro</li>
+</ol>
+
 Endpoints:
 ```shell
 GET /games/{id}
